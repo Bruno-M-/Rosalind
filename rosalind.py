@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import string
+import sys
 
 def dna(s):
 
@@ -8,7 +9,7 @@ def dna(s):
 		sample=s.upper()
 		return str(sample.count('A'))+" "+str(sample.count('C'))+" "+str(sample.count('G'))+" "+str(sample.count('T'))
 	else:
-		print "Error (DNA) Input must be a string"
+		print "Error ["+sys._getframe().f_code.co_name+"] Input must be a string"
 		return None
 
 def rna(s):
@@ -17,7 +18,7 @@ def rna(s):
 		sample=s.upper()
 		return sample.replace('T','U')
 	else:
-		print "Error (RNA) Input must be a string"
+		print "Error ["+sys._getframe().f_code.co_name+"] Input must be a string"
 		return None
 
 def revc(s):
@@ -30,7 +31,7 @@ def revc(s):
 		sample = sample.replace('T','a')
 		return sample.swapcase()
 	else:
-		print "Error (REVC) Input must be a string"
+		print "Error ["+sys._getframe().f_code.co_name+"] Input must be a string"
 		return None
 
 
