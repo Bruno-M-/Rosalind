@@ -60,3 +60,22 @@ def gc(file_name):
 		return max_sample
 	else:
 		return None
+
+def fib(month, litter):
+
+	if (isinstance(month,type(0)) and isinstance(litter,type(0))):
+		fibo=0
+		f1 = 1
+		f2 = 1
+		if month > 2:
+			for count in range (0, month-2):
+				fibo = (f1 + (f2*litter))
+				f2 = f1
+				f1 = fibo
+		else:
+			fibo = 1
+
+		return fibo
+	else:
+		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be a string"
+		return None
