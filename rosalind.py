@@ -3,6 +3,7 @@
 import string
 import sys
 import fasta
+import protein
 
 def dna(s):
 
@@ -79,3 +80,39 @@ def fib(month, litter):
 	else:
 		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be a string"
 		return None
+
+def hamm(s1, s2):
+
+	if (isinstance(s1,type('0')) and isinstance(s2,type('0'))):
+
+		if (len(s1) == len(s2)):
+			sample1 = s1.upper()
+			sample2 = s2.upper()
+			hamming_dist=0
+			
+			if sample1 != sample2:
+				for count in range (0,len(sample1)):
+					if sample1[count] != sample2[count]:
+						hamming_dist += 1
+
+			return hamming_dist
+		else:
+			print "Error ["+sys._getframe().f_code.co_name+"] Input strings must be the same lenght"
+			return None
+
+	else:
+		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be a string"
+		return None
+
+def prot(s):
+
+	if isinstance(s,type('0')):
+		sample=s.upper()
+		prot=''
+
+		for count in range(0, len(sample)/3):
+			count_s=count * 3
+			prot += protein.translate(sample[count_s:count_s+3])
+
+		return prot
+
