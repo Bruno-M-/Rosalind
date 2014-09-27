@@ -116,3 +116,51 @@ def prot(s):
 
 		return prot
 
+def subs(s1, s2):
+
+	if (isinstance(s1,type('0')) and isinstance (s2,type('0'))):
+
+		if(len(s1)>=len(s2)):
+			
+			sample1=s1.upper()
+			sample2=s2.upper()
+			position = []
+
+			index = sample1.find(sample2)
+			while (index != -1):
+				position.append(index+1)
+				index = sample1.find(sample2, index+1)
+
+			return position
+		else:
+			print "Error ["+sys._getframe().f_code.co_name+"] first strings must be greater or egual to second string"
+			return None
+
+	else:
+		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be a string"
+		return None
+
+def iprb(k, m, n):
+
+	if (isinstance(k,type(0.0)) and isinstance(m,type(0.0)) and isinstance(n,type(0.0))):
+
+		dominent_proba = [(4.0/4.0),(4.0/4.0),(4.0/4.0),(4.0/4.0),(3.0/4.0),(2.0/4.0),(4.0/4.0),(2.0/4.0),(0.0/4.0)]
+		choice_proba = 0
+		index = 0
+		first_choice_count  = 0
+		for first_choice in k, m, n:
+			second_choice_count = 0
+			for second_choice in k, m, n:
+				if (first_choice_count == second_choice_count):
+					second_choice -= 1
+				choice_proba += ((first_choice/(k+m+n)) * (second_choice/((k+m+n)-1))) * dominent_proba[index]
+				index += 1
+				second_choice_count += 1
+			first_choice_count += 1
+
+		return round(choice_proba, 5)
+
+	else:
+		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be float"
+		return None
+
