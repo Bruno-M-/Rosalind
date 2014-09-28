@@ -4,6 +4,7 @@ import string
 import sys
 import fasta
 import protein
+import fibonacci
 
 def dna(s):
 
@@ -164,3 +165,27 @@ def iprb(k, m, n):
 		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be float"
 		return None
 
+def fibd(n, m):
+
+	if (isinstance(n,type(0)) and isinstance(m,type(0))):
+		fibo=0
+		f1 = 1
+		f2 = 1
+		if n > 2:
+			for count in range (3, n+1):
+				if (count - m+1) > 1:  
+					dead = fibd(count-m+2, m) - fibd(count-m+1,m)
+				else:
+					dead = 0
+				fibo = (f1 + f2) - dead
+				f2 = f1
+				f1 = fibo
+		elif n > 0:
+			fibo = 1
+		else:
+			fibo = 0
+
+		return fibo
+	else:
+		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be integer"
+		return None
