@@ -4,7 +4,6 @@ import string
 import sys
 import fasta
 import protein
-import fibonacci
 
 def dna(s):
 
@@ -189,3 +188,81 @@ def fibd(n, m):
 	else:
 		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be integer"
 		return None
+
+def cons(fasta_array):
+
+	count = 0
+
+	#Get ride of the index part in fasta_raay we don't nedd them
+	for element in fasta_array:
+		fasta_array[count] = element.split(">")[1]
+		count += 1
+
+	A = [0] * len(fasta_array[0])
+	C = [0] * len(fasta_array[0])
+	G = [0] * len(fasta_array[0])
+	T = [0] * len(fasta_array[0])
+	consensus = [""] * len(fasta_array[0])
+
+
+	for count in range(0,len(fasta_array[0])):
+		for element in fasta_array:
+			if element[count] == "A":
+				A[count] += 1
+			elif element[count] == "C":
+				C[count] += 1
+			elif element[count] == "G":
+				G[count] += 1
+			elif element[count] == "T":
+				T[count] += 1
+			else:
+				print "Error char not recognized"
+				return None
+
+	for count in range(0,len(A)):
+		#Find max value
+		max_nb = 0
+		if A[count] > max_nb:
+			max_nb = A[count]
+		if C[count] > max_nb:
+			max_nb = C[count]
+		if G[count] > max_nb:
+			max_nb = G[count]
+		if T[count] > max_nb:
+			max_nb = T[count]
+
+		#Find all maxed nucleobase
+		if A[count] == max_nb:
+			consensus[count] += "A"
+		if C[count] == max_nb:
+			consensus[count] += "C"
+		if G[count] == max_nb:
+			consensus[count] += "G"
+		if T[count] == max_nb:
+			consensus[count] += "T"
+	
+	#In fact we don't need to compute all possible consensus strings but 
+	# I'll keep thoses lines since it works too :)
+	#
+	##Find how many string we will have to generate
+	#cons_nb = 1
+	#for count in range(0,len(consensus)):
+	#	cons_nb *= len(consensus[count])
+	
+	result = [""] * 5 #Pre create array that'll hold the consensus string and the 4 profiles
+	#cons_pwr = [0] * 4 #Also create this array needed for consensus strings computation
+
+	result[0] = A	
+	result[1] = C	
+	result[2] = G	
+	result[3] = T	
+
+	for count in range(0, len(consensus)):
+		result[4] += consensus[count][0]
+#		for index in range(4, cons_nb+4):
+#			result[index] += consensus[count][index/(len(consensus[count])**cons_pwr[len(consensus[count])])%(len(consensus[count]))]
+#
+#		cons_pwr[len(consensus[count])] += 1
+
+
+	return result
