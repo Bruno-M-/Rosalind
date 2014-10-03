@@ -266,3 +266,20 @@ def cons(fasta_array):
 
 
 	return result
+
+def grph (fasta_array):
+	
+	result = []
+	max_size = len(fasta_array)
+
+	for count in range(0, max_size):
+		first_label = fasta_array[count].split(">")[0]
+		first_sample = fasta_array[count].split(">")[1]
+		for index in range(0, max_size):
+			second_label = fasta_array[index].split(">")[0]
+			second_sample = fasta_array[index].split(">")[1]
+
+			if first_sample != second_sample and first_sample[-3:] == second_sample[:3]:
+				result.append(first_label+" "+second_label)
+
+	return result
