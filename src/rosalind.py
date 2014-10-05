@@ -296,3 +296,37 @@ def iev(sample):
 
 	return result
 
+def lcsm(fasta_array):
+
+	count = 0
+	found = True
+
+	#Get ride of the index part in fasta_raay we don't nedd them
+	for element in fasta_array:
+		fasta_array[count] = element.split(">")[1]
+		count += 1
+
+	count = 0
+
+	#Find shortest string in given array
+
+	shortest = 0
+	for count in range(0, len(fasta_array)):
+		if len(fasta_array[count]) < len(fasta_array[shortest]):
+			shortest = count
+
+	# Parse shortest string and try to find decreasing pattern in other samples
+	for lenght in range(len(fasta_array[shortest])+1,1,-1):
+		max_count = 0
+		for index in range(0,(len(fasta_array[shortest])+1)-lenght):
+			sample = fasta_array[shortest][index:index+lenght]
+			for count in range(1,len(fasta_array)):
+				if fasta_array[count].find(sample) == -1:
+					found = False
+					break
+			if found:
+				return sample
+
+			found = True
+	return None
+
