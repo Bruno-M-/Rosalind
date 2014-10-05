@@ -283,3 +283,16 @@ def grph (fasta_array):
 				result.append(first_label+" "+second_label)
 
 	return result
+
+def iev(sample):
+
+	result = 0.0
+	offspring_nb = 2.0
+	dominent_proba = [(4.0/4.0),(4.0/4.0),(4.0/4.0),(3.0/4.0),(2.0/4.0),(0.0/4.0)]
+	sample_array = sample.split()
+
+	for count in range(0, len(dominent_proba)):
+			result += (float(sample_array[count]) * offspring_nb) * dominent_proba[count]
+
+	return result
+
