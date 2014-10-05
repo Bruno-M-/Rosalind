@@ -17,16 +17,10 @@ except:
 	exit(1)
 
 
-sample = []
 consensus = []
 count = 0
 
-for line in fd:
-	sample.append(line[:-1])
-	count += 1
-
 consensus = rosalind.cons(fasta.parser(file_name))
-
 
 for count in range(4, len(consensus)):
 	print consensus[count]
