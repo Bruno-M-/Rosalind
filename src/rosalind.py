@@ -27,6 +27,7 @@ def rna(s):
 def revc(s):
 
 	if isinstance(s,type('')):
+		s= s.rstrip('\r\n')
 		sample = s[::-1].upper()
 		sample = sample.replace('A','t')
 		sample = sample.replace('C','g')
