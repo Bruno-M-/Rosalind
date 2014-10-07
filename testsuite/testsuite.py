@@ -32,6 +32,8 @@ def campaign(directory):
 			output_name = "rosalind_"+problem_name+"_output.txt"
 
 			# Find path to input and output files
+			input_file = ""
+			output_file = ""
 			for dirname_2, dirnames_2, filenames_2 in os.walk('.'):
 				for filename_2 in filenames_2:
 					if filename_2 == input_name:
@@ -39,6 +41,13 @@ def campaign(directory):
 					if filename_2 == output_name:
 						output_file = os.path.join(dirname_2, filename_2)
 			
+			if not os.path.isfile(input_file):
+				print hilite("[Missing input file]", "KO", True)
+				continue
+			if not os.path.isfile(output_file):
+				print hilite("[Missing output file]", "KO", True)
+				continue
+
 			# Create command line with resolver and input file
 			cmd = os.path.join(dirname, filename)
 			cmd_line = cmd+" "+input_file
