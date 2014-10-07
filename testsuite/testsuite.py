@@ -80,3 +80,12 @@ print hilite("|  Python Village  |","",True)
 print hilite("--------------------","",True)
 print
 campaign('../resolver/python_village')
+print
+
+print hilite("-------------------------------","",True)
+print hilite("|  Bioinformatics Stronghold  |","",True)
+print hilite("-------------------------------","",True)
+print
+campaign('../resolver/bioinformatics_stronghold')
+print
+
