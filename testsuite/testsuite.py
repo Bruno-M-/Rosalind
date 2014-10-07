@@ -41,7 +41,7 @@ def campaign(directory):
 			
 			# Create command line with resolver and input file
 			cmd = os.path.join(dirname, filename)
-			cmd_line = cmd+" "+input_name
+			cmd_line = cmd+" "+input_file
 
 			# Create a temporary file to hold result
 			result_file = tempfile.NamedTemporaryFile(delete=False)
