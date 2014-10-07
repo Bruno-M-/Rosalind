@@ -8,7 +8,7 @@ import protein
 def dna(s):
 
 	if isinstance(s,type('')):
-		sample=s.upper()
+		sample = s.upper()
 		return str(sample.count('A'))+" "+str(sample.count('C'))+" "+str(sample.count('G'))+" "+str(sample.count('T'))
 	else:
 		print "Error ["+sys._getframe().f_code.co_name+"] Input must be a string"
@@ -17,7 +17,8 @@ def dna(s):
 def rna(s):
 
 	if isinstance(s,type('')):
-		sample=s.upper()
+		sample = s.upper()
+		sample = sample.rstrip('\r\n')
 		return sample.replace('T','U')
 	else:
 		print "Error ["+sys._getframe().f_code.co_name+"] Input must be a string"
