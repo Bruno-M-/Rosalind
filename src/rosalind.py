@@ -86,6 +86,8 @@ def hamm(s1, s2):
 		if (len(s1) == len(s2)):
 			sample1 = s1.upper()
 			sample2 = s2.upper()
+			sample1 = sample1.rstrip('\r\n')
+			sample2 = sample2.rstrip('\r\n')
 			hamming_dist=0
 			
 			if sample1 != sample2:
