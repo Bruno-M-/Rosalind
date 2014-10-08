@@ -167,30 +167,34 @@ def iprb(k, m, n):
 		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be float"
 		return None
 
+fibd_result = [0] * 100
+
 def fibd(n, m):
+    global fibd_result
+    if isinstance(n, type(0)) and isinstance(m, type(0)):
+        fibo = 0
+        f1 = 1
+        f2 = 1
+        if n <= m:
+            if fibd_result[n] == 0:
+                fibd_result[n] = fib(n, 1)
+                return fibd_result[n]
+            else:
+                return fibd_result[n]
+        else:
+            for count in range(m + 1, n + 1):
+                fibo = 0
+                for index in range(count - m, count - 1):
+                    if fibd_result[index] == 0:
+                        fibd_result[index] = fibd(index, m)
+                    fibo_index = fibd_result[index]
+                    fibo = fibo + fibo_index
 
-	if (isinstance(n,type(0)) and isinstance(m,type(0))):
-		fibo=0
-		f1 = 1
-		f2 = 1
-		if n > 2:
-			for count in range (3, n+1):
-				if (count - m+1) > 1:  
-					dead = fibd(count-m+2, m) - fibd(count-m+1,m)
-				else:
-					dead = 0
-				fibo = (f1 + f2) - dead
-				f2 = f1
-				f1 = fibo
-		elif n > 0:
-			fibo = 1
-		else:
-			fibo = 0
+        return fibo
+    else:
+        print 'Error [' + sys._getframe().f_code.co_name + '] Inputs must be integer'
+        return None
 
-		return fibo
-	else:
-		print "Error ["+sys._getframe().f_code.co_name+"] Inputs must be integer"
-		return None
 
 def cons(fasta_array):
 
