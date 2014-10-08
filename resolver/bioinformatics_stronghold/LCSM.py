@@ -16,9 +16,5 @@ except:
 	print "Error ["+sys.argv[0]+"] Input ("+file_name+") must be a valid file"
 	exit(1)
 
-result = ""
-
-result = rosalind.lcsm(fasta.parser(file_name))
-
-print result
+print rosalind.lcsm(fasta.parser(file_name))
 
