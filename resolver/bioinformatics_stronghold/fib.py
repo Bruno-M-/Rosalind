@@ -16,8 +16,7 @@ except:
 	exit(1)
 
 sample = fd.readline()
-month = int(sample.split()[0])
-litter = int(sample.split()[1])
+month, litter = sample.split()
 
-print rosalind.fib(month, litter)
+print rosalind.fib(int(month), int(litter))
 
