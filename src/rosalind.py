@@ -39,30 +39,26 @@ def revc(s):
 		return None
 
 
-def gc(file_name):
+def gc(fasta_array):
 
-	fasta_array=fasta.parser(file_name)
-
-	if fasta_array != None:
-		for element in fasta_array:
-			max_sample=[ '', 0 ]
-			title, s=element.split('>')
-			if isinstance(s,type('')):
-				sample=s.upper()
-				A, C, G, T=dna(sample).split()
-				gc_total=float(C)+float(G)
-				total=float(A)+float(C)+float(G)+float(T)
-				gc_percent=round(((gc_total/total)*100), 6)
-				if max_sample[1] < gc_percent:
-					max_sample[0]=title
-					max_sample[1]=gc_percent
-			else:
-				print "Error ["+sys._getframe().f_code.co_name+"] Input must be a string"
-				return None
+	for element in fasta_array:
+		max_sample=[ '', 0 ]
+		title, s=element.split('>')
+		if isinstance(s,type('')):
+			sample=s.upper()
+			A, C, G, T=dna(sample).split()
+			gc_total=float(C)+float(G)
+			total=float(A)+float(C)+float(G)+float(T)
+			gc_percent=round(((gc_total/total)*100), 6)
+			if max_sample[1] < gc_percent:
+				max_sample[0]=title
+				max_sample[1]=gc_percent
+		else:
+			print "Error ["+sys._getframe().f_code.co_name+"] Input must be a string"
+			return None
 			
-		return max_sample
-	else:
-		return None
+	return max_sample
+
 
 def fib(month, litter):
 
