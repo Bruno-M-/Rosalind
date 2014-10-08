@@ -40,4 +40,4 @@ print
 print "T:",
 for count in range(0,len(consensus[3])):
 	print consensus[3][count],
-print
+
