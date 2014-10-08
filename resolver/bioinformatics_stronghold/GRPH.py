@@ -20,6 +20,6 @@ result = []
 
 result = rosalind.grph(fasta.parser(file_name))
 
-for count in range(0, len(result)):
-	print result[count]
+for element in result:
+	print element
 
