@@ -108,6 +108,7 @@ def prot(s):
 
 	if isinstance(s,type('0')):
 		sample=s.upper()
+		sample = sample.rstrip('\r\n')
 		prot=''
 
 		for count in range(0, len(sample)/3):
