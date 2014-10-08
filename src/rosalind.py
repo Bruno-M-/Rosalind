@@ -125,6 +125,8 @@ def subs(s1, s2):
 			
 			sample1=s1.upper()
 			sample2=s2.upper()
+			sample1 = sample1.rstrip('\r\n')
+			sample2 = sample2.rstrip('\r\n')
 			position = []
 
 			index = sample1.find(sample2)
