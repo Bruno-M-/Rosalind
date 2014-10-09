@@ -42,30 +42,54 @@ def campaign(directory):
 						output_file = os.path.join(dirname_2, filename_2)
 			
 			if not os.path.isfile(input_file):
-				print hilite("[Missing input file]", "KO", True)
+				print hilite("[Missing input file]", "KO", True),
 				continue
 			if not os.path.isfile(output_file):
-				print hilite("[Missing output file]", "KO", True)
+				print hilite("[Missing output file]", "KO", True),
 				continue
 
 			# Create command line with resolver and input file
 			cmd = os.path.join(dirname, filename)
-			cmd_line = cmd+" "+input_file
+			cmd_line = "time "+cmd+" "+input_file
 
 			# Create a temporary file to hold result
 			result_file = tempfile.NamedTemporaryFile(delete=False)
+			time_file = tempfile.NamedTemporaryFile(delete=False)
 
 			# Run the command and get the result
-			result_file.write(subprocess.check_output( cmd_line, shell=True))
+			from subprocess import STDOUT
+			result_file.write(subprocess.check_output( cmd_line, stderr=STDOUT, shell=True))
 			result_file.close()
+
+			# Extract time informations from result file
+			fd = open(result_file.name, 'r+')
+			lines = fd.readlines()
+			time_lines = lines[-3:]
+			lines = lines[:-4]
+			fd.seek(0)
+			fd.truncate()
+			fd.writelines(lines)
+			fd.close()
+
+			for line in time_lines:
+				line = line.replace('\n',' | ')
+				line = line.replace('\t',' ')
+				time_file.write(line)
+			time_file.close()
+
 
 			# Compare the result with the expected output
 			if filecmp.cmp(output_file, result_file.name, shallow=False):
-				print hilite("[OK]", "OK", True)
+				print hilite("[OK]", "OK", True),
 			else:
-				print hilite("[KO]", "KO", True)
+				print hilite("[KO]", "KO", True),
+
+			fd = open(time_file.name, 'r')
+			print fd.readline()[:-3]
+			fd.close()
 			
 			os.remove(result_file.name)
+			os.remove(time_file.name)
 
 
 print hilite("********************************","",True)
